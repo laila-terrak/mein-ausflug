@@ -1,0 +1,18 @@
+.discover-btn {
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  width: 395px;
+  height: 68px;
+  color: #ffffff;
+  background-color: #ff5900;
+  font-family: Poppins, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  border-radius: 500px;
+  border: none;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 20px;
+  justify-content: center;
+}

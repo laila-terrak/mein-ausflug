@@ -1,0 +1,20 @@
+<div class="reviews-container">
+    <p class="reviews-number">{{ reviews }} reviews</p>
+    <div class="star-container">
+        {# Berechnung der vollen Sterne #}
+        {% set fullStars = rating|floor %}
+        {# Berechnung, ob ein halber Stern benötigt wird #}
+        {% set halfStar = rating - fullStars >= 0.5 %}
+
+        {# Vollen Sterne anzeigen #}
+        {% for i in 1..fullStars %}
+            <twig:Icon class="fa-solid fa-star fa-lg"/>
+        {% endfor %}
+
+        {# Einen halben Stern anzeigen, falls notwendig #}
+        {% if halfStar %}
+            <twig:Icon class="fa-solid fa-star-half fa-lg star"/>
+        {% endif %}
+        <span class="bewertung">{{ rating }}</span>
+    </div>
+</div>

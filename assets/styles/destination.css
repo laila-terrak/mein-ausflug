@@ -1,0 +1,208 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+section {
+  padding: 28px 35px;
+}
+
+.title,
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.sub-title,
+.hero-text {
+  font-size: 24px;
+}
+
+.first-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.icon-button {
+  width: 39px;
+  height: 40px;
+  padding: 10px;
+  background-color: rgba(55, 55, 55, 0.4);
+  border-radius: 10px;
+  border: none;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.icon {
+  color: #ffffff;
+  line-height: 20px;
+}
+
+.star-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  align-items: center;
+  height: 50px;
+  padding: 10px 20px;
+  color: #ff5900;
+  background-color: #dbdbdb;
+  border-radius: 500px;
+}
+
+.reviews-number {
+  width: 93px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: 100;
+  text-align: end;
+  position: absolute;
+  top: -20px;
+  right: 30px;
+}
+
+.reviews-container {
+  position: relative;
+}
+
+.bewertung {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.second-container {
+  display: flex;
+  margin-top: 40px;
+  gap: 40px;
+}
+
+h3,
+.number-of-available-rooms {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.hotel-description,
+.available-room {
+  font-size: 20px;
+  margin: 10px 0 10px 0;
+}
+
+.amenities-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.amenity {
+  color: #ff5900;
+  padding: 5px;
+  border: solid 2px #ff5900;
+  border-radius: 10px;
+}
+
+.fa-spa,
+.fa-person-swimming,
+.fa-square-parking,
+.fa-utensils {
+  margin-right: 10px;
+}
+.number-of-available-rooms {
+  color: #ff5900;
+}
+
+.fa-percent,
+.fa-hand-pointer {
+  margin-right: 10px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: white;
+  transition: 0.6s ease;
+  user-select: none;
+  background-color: #343434;
+  font-size: 18px;
+
+  border-radius: 50%;
+}
+
+/* Position the "next button" to the right */
+
+/* On hover, add a black background color with a little bit see-through */
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 2px;
+  width: 30px;
+  margin: 0 2px;
+  background-color: #b8b8b8;
+  display: inline-block;
+}
+
+.active,
+.dot:hover {
+  background-color: #ff5900;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,24 @@
+.hotel-card-container {
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #ededed;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-container {
+  color: orange;
+}
+
+.image-container {
+  border-radius: 20px;
+}
+
+.data-container {
+  display: flex;
+  gap: 4rem;
+}

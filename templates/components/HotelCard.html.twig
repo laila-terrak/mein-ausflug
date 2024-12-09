@@ -1,0 +1,25 @@
+<section class="hotel-card-container">
+        <div class="title-container">
+                <h3>{{title}}</h3>
+        </div>
+        <div class="image-container">
+                <img
+                  src="{{ image}}"
+                  alt="{{ description}}"
+                  style="width: 100%"
+                />
+        </div>
+        <div class="desc-container">
+        <p>{{description}}</p>
+        </div>
+        <div class="data-container">
+                <twig:Rating reviews="544" rating="4.5" />
+                <p class="available-room">
+                        Available Rooms: <span class="number-of-available-rooms">{{rooms}}</span>
+                </p>
+        </div>
+        <div class="button-container">
+                <twig:Button icon="fa-percent" href="{{href}}" text="Learn more" />
+        </div>
+
+</section>

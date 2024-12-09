@@ -1,0 +1,34 @@
+{% set sliderImages = [
+    {'src': 'img1.png', 'alt': 'Bild 1'},
+    {'src': 'img1.png', 'alt': 'Bild 1'},
+    {'src': 'img1.png', 'alt': 'Bild 1'},
+    {'src': 'img1.png', 'alt': 'Bild 1'},
+    {'src': 'img1.png', 'alt': 'Bild 1'},
+    {'src': 'img1.png', 'alt': 'Bild 1'},
+    {'src': 'img1.png', 'alt': 'Bild 1'},
+] %}
+<section>
+      <h2 class="title">City, Country</h2>
+      <div class="first-container">
+        <p class="sub-title">Destination Subtex</p>
+        <div class="icon-container">
+          <div class="button-container">
+            <twig:IconButton  icon="fa-heart"/>
+            <twig:IconButton  icon="fa-square-share-nodes"/>
+            <twig:IconButton  icon="fa-eye-slash"/>
+            <twig:IconButton  icon="fa-code-compare"/>
+          </div>
+          <twig:Rating   rating="3.6" reviews="143 reviews"/>
+        </div>
+      </div>
+      <div class="second-container">
+          <twig:Slider id="slider2" images="{{sliderImages}}"/>
+        <div class="info-container">
+          <h3>About Hotel</h3>
+          <p class="hotel-description">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur.
+            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</P>
+          <twig:Button  icon="fa-hand-pointer" text="Book Now!"/>
+        </div>
+      </div>
+    </section>

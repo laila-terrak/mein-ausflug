@@ -1,0 +1,32 @@
+<div class="img-container" id="{{ id }}">
+<div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+            {% for image in images %}
+              <div class="mySlides fade">
+                <div class="numbertext">{{ loop.index }}/ {{ loop.length }}</div>
+                <img
+                  src="{{ image.src}}"
+                  alt="{{ image.alt}}"
+                  style="width: 100%"
+                />
+                {%if(loop.last)%}
+                </div class="prev-next-container"> 
+                {% endif %}
+            </div>
+            {% endfor %}
+          <!-- The dots/circles -->
+          <div style="text-align: center">
+            <a class="prev">&#10094;</a>
+            {% for image in images %}
+             <span class="dot"></span>
+            {% endfor %}
+            <a class="next">&#10095;</a>
+</div>
+</div>
+<script src="{{ asset('slider.js') }}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const slider1 = new Slider(document.getElementById("{{ id }}"));
+});
+</script>
