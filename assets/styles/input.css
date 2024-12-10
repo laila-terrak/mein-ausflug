@@ -1,0 +1,18 @@
+.input {
+  padding: 10px;
+  min-width: 30vw;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: block;
+  font-family: Poppings, sans-serif;
+  border-radius: 15px;
+  border: 2px solid #343434;
+}
+.input:active,
+input:focus {
+  font-size: 13px;
+  border: 2px solid #ff5900;
+  outline: none;
+  background-color: #ffffff;
+}

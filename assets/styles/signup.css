@@ -1,0 +1,62 @@
+body {
+  font-family: Poppins, sans-serif;
+}
+
+form {
+  max-width: 50vw;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 10px;
+  text-align: center;
+  background-color: #dbdbdb;
+  border-radius: 15px;
+}
+
+.sign-header {
+  color: #ff5900;
+  font-size: 40px;
+  margin: 10px;
+}
+
+.signup-btn {
+  display: inline-block;
+  text-decoration: none;
+  min-width: 30vw;
+  margin-top: 10px;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #ff5900;
+  border-radius: 15px;
+  font-weight: 500;
+}
+
+.signup-btn:hover {
+  opacity: 50%;
+}
+
+.sign-text {
+  margin: 20px;
+}
+
+.sign-link {
+  text-decoration: none;
+  color: #ff5900;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 530px) {
+  form {
+    max-width: 250px;
+    padding: 20px;
+  }
+
+  .signup-btn {
+    width: 200px;
+  }
+
+  .input {
+    width: 200px;
+    font-size: 14px;
+  }
+}

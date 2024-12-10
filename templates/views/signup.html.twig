@@ -22,12 +22,17 @@
         {% endblock %}
     </head>
     <body>
-    <twig:Hero text="{{ destinations[0].description }}" title="{{ destinations[0].name }}" href="/destination/{{ destinations[0].id}}"/>
-    <div class="flex-container">
-      {% for destination in destinations %}
-        <twig:Card text="{{destination.name}}" href="/destination/{{ destination.id}}" src="./img1.png" alt="{{destination.description}}" />
-      {% endfor %}
-    </div>
-    <twig:HotelCard title="hotel blabla" description="hbjbgouogobodhofbdohbodh" image="/img1.png" rooms="14"/>
+    <form>
+    <h1 class="sign-header">Sign Up</h1>
+    <twig:Input type="text" placeholder="First Name" name="fname" />
+    <twig:Input type="text" placeholder="Last Name" name="lname" />
+    <twig:Input  type="email" placeholder="Email" name="email" />
+    <twig:Input  type="date" placeholder="Birth date" name="birth-date" />
+    <twig:Input  type="number" placeholder="Phone number" name="phone-number" />
+    <twig:Input  type="password" placeholder="Password" name="password" />
+    <twig:Input  type="password" placeholder="Confirm Password" name="password" />
+    <twig:Button text="Sign Up" class="signup-btn"/>
+    <p class="sign-text">Already have an Account? <a class ="sign-link" href="/signin">Sign In</a></p>
+    </form>
     </body>
 </html>
