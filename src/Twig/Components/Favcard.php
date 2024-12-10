@@ -4,10 +4,11 @@ namespace App\Twig\Components;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 #[AsTwigComponent]
-class Button
+class Favcard
 {
-    public string $icon="";
-    public string $text="";
+    public string $src="";
+    public string $alt="";
+    public string $title="";
     public string $href="";
     public string $class="";
 }

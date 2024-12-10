@@ -13,3 +13,5 @@ import "./styles/hotelCard.css";
 import "./styles/button.css";
 import "./styles/input.css";
 import "./styles/signup.css";
+import "./styles/profile.css";
+import "./styles/favcard.css";
