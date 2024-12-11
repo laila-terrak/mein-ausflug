@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="admin-container">
+        <h1>Manage Hotels</h1>
+        
+        {% if app.request.query.get('error') %}
+            <div class="error-message">{{ app.request.query.get('error') }}</div>
+        {% endif %}
+        
+        <div class="admin-actions">
+            <a href="{{ path('app_admin_hotels_add') }}" class="btn-primary">Add New Hotel</a>
+        </div>
+        
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Destination</th>
+                    <th>Available Rooms</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hotel in hotels %}
+                    <tr>
+                        <td>{{ hotel.name }}</td>
+                        <td>{{ hotel.destination_name }}</td>
+                        <td>{{ hotel.available_rooms }}/{{ hotel.room_number }}</td>
+                        <td class="actions">
+                            <a href="{{ path('app_admin_hotels_edit', {id: hotel.id}) }}" class="btn-edit">Edit</a>
+                            <form method="POST" action="/admin/hotels/{{ hotel.id }}/delete" class="inline-form" onsubmit="return confirm('Are you sure?')">
+                                <button type="submit" class="btn-delete">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %} 

@@ -16,3 +16,17 @@
   margin-left: 20px;
   justify-content: center;
 }
+.favorite-btn {
+  border: none;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.favorite-btn.active {
+  color: #ff5900;
+}
+
+.favorite-btn:hover {
+  color: #ff5900;
+}

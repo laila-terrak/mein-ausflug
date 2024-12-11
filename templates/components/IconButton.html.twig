@@ -1,3 +1,12 @@
-<button class="icon-button icon">
-  <i class="fa-solid {{icon}} fa-lg"></i>
-</button>
+<form method="POST" action="{{ path('app_favorites_toggle') }}" style="display: inline;">
+    {% if itemId and itemType %}
+        {% if itemType == 'hotel' %}
+            <input type="hidden" name="hotel_id" value="{{ itemId }}">
+        {% else %}
+            <input type="hidden" name="destination_id" value="{{ itemId }}">
+        {% endif %}
+    {% endif %}
+    <button type="submit" class="icon-button favorite-btn {% if isFavorite %}active{% endif %}">
+        <i class="fa-solid {{icon}} fa-lg icon"></i>
+    </button>
+</form>

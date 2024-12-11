@@ -1,51 +1,41 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
-        />
-        <script
-          src="https://kit.fontawesome.com/66bdc979ff.js"
-          crossorigin="anonymous"
-        ></script>
-        {% block stylesheets %}
-        {% endblock %}
-
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
+{% extends 'base.html.twig' %}
+{% block body %}
     <section class="profile-section">
         <div class="profile-div">
-            <twig:Button  icon="fa-arrow-left" class="go-back-btn" href=""/>
-            <h1 class="profile-title">Your Profile</h1>
+            <twig:Button icon="fa-arrow-left" class="go-back-btn" href=""/>
             <div class="profile-img-container">
-                <image src="./img1.png" alt="" class="profile-img"/>
+                <h1 class="profile-title">Your Profile</h1>
+                <img src="./img1.png" alt="" class="profile-img"/>
             </div>
-            <twig:Button icon="fa-pen-to-square"  text="Edit Profile" class="edit-btn"/>
-            <div>
-                <h2 class="profile-fav">Favorites</h2>
-                <div class="flex-container" style="gap: 30px;">
-                    <twig:Favcard title="City, Country" class="remove-btn" src="/img1.png" />
-                    <twig:Favcard title="City, Country" class="remove-btn" src="/img1.png" />
-                </div>
-            </div>
-            <div>
-                <h2 class="profile-hid">Hidden</h2>
-                <div class="flex-container" style="gap: 30px;">
-                    <twig:Favcard title="City, Country" class="remove-btn" src="/img1.png" />
-                    <twig:Favcard title="City, Country" class="remove-btn" src="/img1.png" />
-                </div>
+        </div>    
+        
+        <div>
+            <h2 class="profile-fav">Favorite Hotels</h2>
+            <div class="flex-container" style="gap: 30px;">
+                {% for hotel in favoriteHotels %}
+                    <twig:HotelCard 
+                        title="{{hotel.name}}"
+                        description="{{hotel.description}}"
+                        image="{{hotel.image_url}}"
+                        rooms="{{hotel.available_rooms}}"
+                        href="/hotel/{{hotel.id}}"
+                    />
+                {% endfor %}
             </div>
         </div>
-
+        
+        <div>
+            <h2 class="profile-fav">Favorite Destinations</h2>
+            <div class="flex-container" style="gap: 30px;">
+                {% for destination in favoriteDestinations %}
+                    <twig:Card 
+                        text="{{destination.name}}"
+                        href="/destination/{{destination.id}}"
+                        src="{{destination.image_url}}"
+                        alt="{{destination.description}}"
+                    />
+                {% endfor %}
+            </div>
+        </div>
     </section>
-    </body>
-</html>
+{% endblock %}

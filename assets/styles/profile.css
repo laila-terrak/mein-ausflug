@@ -1,16 +1,49 @@
 .profile-section {
   background-color: #e3e5e8;
   padding: 28px 35px;
-  width: 100vw;
+  width: 100%;
   min-height: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  .profile-section {
+    padding: 15px 20px;
+  }
+
+  .profile-title {
+    font-size: 28px;
+  }
+
+  .edit-btn {
+    min-width: 150px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile-section {
+    padding: 10px 15px;
+  }
+
+  .profile-div {
+    margin-bottom: 150px;
+  }
+
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
 .profile-div {
-  height: 25vh;
+  min-height: 200px;
   color: #ffffff;
   background-color: #ff5900;
-  padding: 10px;
+  padding: 20px;
   position: relative;
+  border-radius: 15px;
+  margin-bottom: 200px;
 }
 
 .go-back-btn {
@@ -28,18 +61,14 @@
 }
 
 .profile-img-container {
-  width: 122px;
-  height: 122px;
-  position: absolute;
-  top: 70%;
-  left: 44%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-img {
   width: 122px;
   height: 122px;
-  width: 100%;
-  height: 100%;
   object-fit: fill;
   border: 5px solid #ffffff;
   border-radius: 50%;
@@ -58,17 +87,20 @@
   font-weight: 600;
   border-radius: 50px;
   position: absolute;
-  top: 135%;
-  left: 75%;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 80px;
 }
 
 .profile-fav {
   font-weight: 600;
-  margin-top: 250px;
+  margin-top: 100px;
   background-color: #ffffff;
   text-align: center;
   padding: 10px;
   color: #000000;
+  border-radius: 10px;
 }
 
 .profile-hid {

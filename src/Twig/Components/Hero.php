@@ -8,4 +8,5 @@ class Hero {
        public string $title;
        public string $text;
        public string $href;
+       public string $image;
 }

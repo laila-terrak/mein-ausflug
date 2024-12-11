@@ -1,66 +1,50 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
-        />
-        <script
-          src="https://kit.fontawesome.com/66bdc979ff.js"
-          crossorigin="anonymous"
-        ></script>
-        {% block stylesheets %}
-        {% endblock %}
+{% extends 'base.html.twig' %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-  {% set sliderImages = [
-    {'src': '/img1.png', 'alt': 'Bild 1'},
-    {'src': '/img1.png', 'alt': 'Bild 1'},
-    {'src': '/img1.png', 'alt': 'Bild 1'},
-  ] %}
-    <section>
-      <h2 class="title">{{ destination.name }}</h2>
-      <div class="first-container">
-        <p class="sub-title">{{ destination.description }}</p>
-        <div class="icon-container">
-          <div class="button-container">
-            <twig:IconButton icon="fa-heart"/>
-            <twig:IconButton icon="fa-square-share-nodes"/>
-            <twig:IconButton icon="fa-eye-slash"/>
-            <twig:IconButton icon="fa-code-compare"/>
-          </div>
-          <twig:Rating   rating="4.5" reviews="143 reviews"/>
+{% block body %}
+    {% set sliderImages = [] %}
+    {% for image in hotel.images %}
+        {% set sliderImages = sliderImages | merge([{'src': image, 'alt': hotel.name}]) %}
+    {% endfor %}
+    <section class="hotel-section">
+        <h3>About {{hotel.name}}</h3>
+        <p>{{hotel.description}}</p>
+        <div class="first-container">
+            <div class="icon-container">
+                <div class="button-container">
+                    <twig:IconButton 
+                        icon="fa-heart"
+                        itemId="{{ hotel.id }}"
+                        itemType="hotel"
+                        isFavorite="{{ isFavorited }}"
+                    />
+                    <twig:IconButton icon="fa-square-share-nodes"/>
+                    <twig:IconButton icon="fa-eye-slash"/>
+                    <twig:IconButton icon="fa-code-compare"/>
+                </div>
+                <twig:Rating reviews="{{203}}" rating="{{4.5}}" />
+            </div>
         </div>
-      </div>
-      <div class="second-container">
-          <twig:Slider id="slider1" images="{{sliderImages}}" />
-        <div class="info-container">
-          <h3>About {{destination.name}}</h3>
-          <p class="hotel-description">
-            {{destination.text}}
-          </p>
-          <h3>Amenities</h3>
-          <div class="amenities-container">
-            <twig:SpanIcon icon="fa-spa"  text="Wellnesszentrum"/>
-            <twig:SpanIcon icon="fa-person-swimming"  text="Schwimmbad"/>
-            <twig:SpanIcon icon="fa-square-parking"  text="Parkplatz"/>
-            <twig:SpanIcon icon="fa-utensils"  text="offenes Buffet"/>
-          </div>
-          <p class="available-room">
-            Available Rooms: <span class="number-of-available-rooms">2</span>
-          </p>
-          <twig:Button icon="fa-percent"  text="Jetzt Entdecken!" class="discover-btn"/>
+        <div class="content-section">
+            <div class="slider-section">
+                <twig:Slider id="slider1" images="{{sliderImages}}" />
+            </div>
+
+            <div class="details-section">
+                <p class="hotel-description">
+                    {{hotel.text}}
+                </p>
+                <h3>Amenities</h3>
+                <div class="amenities-container">
+                    <twig:SpanIcon icon="fa-spa" text="Wellnesszentrum"/>
+                    <twig:SpanIcon icon="fa-person-swimming" text="Schwimmbad"/>
+                    <twig:SpanIcon icon="fa-square-parking" text="Parkplatz"/>
+                    <twig:SpanIcon icon="fa-utensils" text="offenes Buffet"/>
+                </div>
+                <p class="available-room">
+                    Available Rooms: <span class="number-of-available-rooms">{{hotel.available_rooms}}</span>
+                </p>
+                <twig:Button icon="fa-percent" text="Book Now!" class="discover-btn"/>
+            </div>
         </div>
-      </div>
-    </section>  
-    </body>
-</html>
+    </section>
+{% endblock %}

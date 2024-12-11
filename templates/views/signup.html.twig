@@ -1,38 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
-        />
-        <script
-          src="https://kit.fontawesome.com/66bdc979ff.js"
-          crossorigin="anonymous"
-        ></script>
-        {% block stylesheets %}
-        {% endblock %}
+{% extends 'base.html.twig' %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-    <form>
-    <h1 class="sign-header">Sign Up</h1>
-    <twig:Input type="text" placeholder="First Name" name="fname" />
-    <twig:Input type="text" placeholder="Last Name" name="lname" />
-    <twig:Input  type="email" placeholder="Email" name="email" />
-    <twig:Input  type="date" placeholder="Birth date" name="birth-date" />
-    <twig:Input  type="number" placeholder="Phone number" name="phone-number" />
-    <twig:Input  type="password" placeholder="Password" name="password" />
-    <twig:Input  type="password" placeholder="Confirm Password" name="password" />
-    <twig:Button text="Sign Up" class="signup-btn"/>
-    <p class="sign-text">Already have an Account? <a class ="sign-link" href="/signin">Sign In</a></p>
+{% block body %}
+    <form method="POST" action="{{ path('app_signup_post') }}" data-turbo="false">
+        <h1 class="sign-header">Sign Up</h1>
+        {% if app.request.query.get('error') %}
+            <div class="error-message">{{ app.request.query.get('error') }}</div>
+        {% endif %}
+        <twig:Input type="text" placeholder="First Name" name="fname" required="true" />
+        <twig:Input type="text" placeholder="Last Name" name="lname" required="true" />
+        <twig:Input type="email" placeholder="Email" name="email" required="true" />
+        <twig:Input type="date" placeholder="Birth date" name="birth-date" required="true" />
+        <twig:Input type="tel" placeholder="Phone number" name="phone-number" required="true" />
+        <twig:Input type="password" placeholder="Password" name="password" required="true" />
+        <twig:Input type="password" placeholder="Confirm Password" name="confirm-password" required="true" />
+        <button type="submit" class="signup-btn">Sign Up</button>
+        <p class="sign-text">Already have an Account? <a class="sign-link" href="{{ path('app_signin') }}">Sign In</a></p>
     </form>
-    </body>
-</html>
+{% endblock %}

@@ -23,10 +23,9 @@
             <a class="next">&#10095;</a>
 </div>
 </div>
-<script src="{{ asset('slider.js') }}"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const slider1 = new Slider(document.getElementById("{{ id }}"));
+  var slider = new Slider(document.getElementById("{{ id }}"));
 });
 </script>

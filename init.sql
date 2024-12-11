@@ -37,6 +37,36 @@ CREATE TABLE IF NOT EXISTS images (
     CHECK (hotel_id IS NOT NULL OR destination_id IS NOT NULL)
 );
 
+CREATE TABLE IF NOT EXISTS users (
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
+    first_name VARCHAR(40),
+    last_name VARCHAR(40),
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(100),
+    phone_number VARCHAR(20),
+    birth_date DATE,
+    role VARCHAR(20) DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS favorites (
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
+    user_id CHAR(36),
+    hotel_id CHAR(36) NULL,
+    destination_id CHAR(36) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE CASCADE,
+    FOREIGN KEY (destination_id) REFERENCES destinations(id) ON DELETE CASCADE,
+    CHECK (hotel_id IS NOT NULL OR destination_id IS NOT NULL),
+    UNIQUE KEY unique_hotel_favorite (user_id, hotel_id),
+    UNIQUE KEY unique_destination_favorite (user_id, destination_id)
+);
+
+-- Insert default admin user
+INSERT INTO users (id, first_name, last_name, email, password, role) VALUES
+('admin1111-1111-1111-1111-11111111111', 'Admin', 'User', 'admin@example.com', 'admin123', 'admin');
+
 -- Insert sample data into destinations
 INSERT INTO destinations (id, name, description, text) VALUES
 ('11111111-1111-1111-1111-111111111111', 'Paris', 'The city of lights, known for art, fashion, gastronomy and culture.', 'Welcome to Paris, a city teeming with famous landmarks, exquisite cuisine, and a vibrant art scene. Explore the Eiffel Tower, the Louvre, and Notre-Dame Cathedral. Indulge in the city’s unparalleled culinary delights and immerse yourself in its rich history and romantic charm.'),
@@ -93,3 +123,4 @@ INSERT INTO images (id, url, hotel_id, destination_id) VALUES
 ('hhhhhhh6-hhhh-hhhh-hhhh-hhhhhhhhhhhh', 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2946&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'ccccccc2-cccc-cccc-cccc-cccccccccccc', NULL),
 ('hhhhhhh7-hhhh-hhhh-hhhh-hhhhhhhhhhhh', 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2946&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'ddddddd1-dddd-dddd-dddd-dddddddddddd', NULL),
 ('hhhhhhh8-hhhh-hhhh-hhhh-hhhhhhhhhhhh', 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2946&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'ddddddd2-dddd-dddd-dddd-dddddddddddd', NULL);
+

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="destination-section">
+        <h1 class="title">Our Destinations</h1>
+        <p class="sub-title">Explore amazing places around the world</p>
+        
+        <div class="flex-container" style="gap: 2rem;">
+            {% for destination in destinations %}
+                <twig:Card 
+                    text="{{destination.name}}" 
+                    href="/destination/{{destination.id}}" 
+                    src="{{destination.image_url}}" 
+                    alt="{{destination.description}}"
+                />
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %} 

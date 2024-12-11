@@ -6,12 +6,26 @@ use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class DestinationController extends AbstractController
 {
     #[Route('/destination/{id}', name: 'destination_show')]
-    public function destination(Connection $connection, string $id): Response
+    public function destination(Request $request, Connection $connection, string $id): Response
     {
+        $session = $request->getSession();
+        $user = $session->get('user');
+        
+        // Check if destination is favorited
+        $isFavorited = false;
+        if ($user) {
+            $favorite = $connection->fetchOne(
+                'SELECT id FROM favorites WHERE user_id = ? AND destination_id = ?',
+                [$user['id'], $id]
+            );
+            $isFavorited = (bool)$favorite;
+        }
+        
         $query = '
             SELECT 
                 d.id AS destination_id, 
@@ -86,6 +100,7 @@ class DestinationController extends AbstractController
         return $this->render('views/destination.html.twig', [
             'destination' => $destination,
             'hotels' => $hotels,
+            'isFavorited' => $isFavorited
         ]);
     }
 }

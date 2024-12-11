@@ -18,3 +18,17 @@
   object-fit: cover;
   border-radius: 20px;
 }
+
+@media screen and (max-width: 480px) {
+  .card-container {
+    width: 100%;
+    max-width: 300px;
+    height: 250px;
+    margin: 5px 0;
+  }
+
+  .card-text {
+    font-size: 20px;
+    top: 200px;
+  }
+}

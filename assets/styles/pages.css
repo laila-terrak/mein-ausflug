@@ -1,0 +1,18 @@
+.destination-section {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.destination-section .title {
+  color: #343434;
+  margin-bottom: 1rem;
+}
+
+.destination-section .sub-title {
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.flex-container {
+  justify-content: center;
+}

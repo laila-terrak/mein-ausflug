@@ -1,67 +1,51 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
-        />
-        <script
-          src="https://kit.fontawesome.com/66bdc979ff.js"
-          crossorigin="anonymous"
-        ></script>
-        {% block stylesheets %}
-        {% endblock %}
+{% extends 'base.html.twig' %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
+{% block body %}
     {% set sliderImages = [] %}
     {% for image in destination.images %}
-      {% set sliderImages = sliderImages | merge([{'src': image, 'alt': destination.name}]) %}
+        {% set sliderImages = sliderImages | merge([{'src': image, 'alt': destination.name}]) %}
     {% endfor %}
     <section class="destination-section">
-      <h2 class="title">{{ destination.name }}</h2>
-      <div class="first-container">
-        <p class="sub-title">{{ destination.description }}</p>
-        <div class="icon-container">
-          <div class="button-container">
-            <twig:IconButton icon="fa-heart"/>
-            <twig:IconButton icon="fa-square-share-nodes"/>
-            <twig:IconButton icon="fa-eye-slash"/>
-            <twig:IconButton icon="fa-code-compare"/>
-          </div>
-          <twig:Rating   rating="4.5" reviews="143"/>
+        <h3>About {{destination.name}}</h3>
+        <p>{{destination.description}}</p>
+        <div class="first-container">
+            <div class="icon-container">
+                <div class="button-container">
+                    <twig:IconButton 
+                        icon="fa-heart"
+                        itemId="{{ destination.id }}"
+                        itemType="destination"
+                        isFavorite="{{ isFavorited }}"
+                    />
+                    <twig:IconButton icon="fa-square-share-nodes"/>
+                    <twig:IconButton icon="fa-eye-slash"/>
+                    <twig:IconButton icon="fa-code-compare"/>
+                </div>
+                <twig:Rating reviews="{{143}}" rating="{{4.5}}" />
+            </div>
         </div>
-      </div>
-      <div class="second-container">
-          <twig:Slider id="slider1" images="{{sliderImages}}" />
-        <div class="" style="width: 60%;">
-          <h3>About {{destination.name}}</h3>
-          <p class="hotel-description">
-            {{destination.text}}
-          </p>
+        <div class="content-section">
+            <div class="slider-section">
+                <twig:Slider id="slider1" images="{{sliderImages}}" />
+            </div>
+
+            <div class="details-section">
+                <p class="destination-description">
+                    {{destination.text}}
+                </p>
+            </div>
         </div>
-      </div>
-        <h3>Hotels</h3>
-        <div class="second-container">
-        <div class="info-container">
-          {% for hotel in hotels %}
-            <twig:HotelCard 
-            rooms="{{hotel.available_rooms}}"
-            title="{{hotel.name}}" 
-            href="/hotel/{{ hotel.id}}" 
-            image="{{hotel.images[0]}}" 
-            description="{{hotel.description}}" />
-          {% endfor %}        
-      </div>
-      </div>
-    </section>  
-    </body>
-</html>
+                <h3>Hotels</h3>
+                <div class="hotels-container">
+                    {% for hotel in hotels %}
+                        <twig:HotelCard 
+                            rooms="{{hotel.available_rooms}}"
+                            title="{{hotel.name}}" 
+                            href="/hotel/{{ hotel.id}}" 
+                            image="{{hotel.images[0]}}" 
+                            description="{{hotel.description}}" 
+                        />
+                    {% endfor %}
+                </div>
+    </section>
+{% endblock %}

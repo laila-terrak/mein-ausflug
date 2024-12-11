@@ -94,6 +94,7 @@ h1 {
   display: flex;
   margin-top: 40px;
   gap: 40px;
+  flex-wrap: wrap;
 }
 
 h3,
@@ -204,5 +205,46 @@ h3,
   }
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .destination-section {
+    padding: 15px 20px;
+  }
+
+  .title,
+  h1 {
+    font-size: 32px;
+  }
+
+  .sub-title,
+  .hero-text {
+    font-size: 20px;
+  }
+
+  .second-container {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .destination-section {
+    padding: 10px 15px;
+  }
+
+  .title,
+  h1 {
+    font-size: 28px;
+  }
+
+  .sub-title,
+  .hero-text {
+    font-size: 18px;
+  }
+
+  .icon-container {
+    flex-direction: column;
+    gap: 20px;
   }
 }

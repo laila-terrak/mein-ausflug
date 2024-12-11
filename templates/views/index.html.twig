@@ -1,33 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
-        />
-        <script
-          src="https://kit.fontawesome.com/66bdc979ff.js"
-          crossorigin="anonymous"
-        ></script>
-        {% block stylesheets %}
-        {% endblock %}
+{% extends 'base.html.twig' %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-    <twig:Hero text="{{ destinations[0].description }}" title="{{ destinations[0].name }}" href="/destination/{{ destinations[0].id}}"/>
+{% block body %}
+    <twig:Hero text="{{ destinations[0].description }}" title="{{ destinations[0].name }}" image="{{destinations[0].image_url}}" href="/destination/{{ destinations[0].id}}"/>
+   <div class="container">
+   <h2 class="title">Destinations</h2>
+   <p class="subtitle">Discover the best destinations for your next trip</p>
+   </div>
     <div class="flex-container">
-      {% for destination in destinations %}
-        <twig:Card text="{{destination.name}}" href="/destination/{{ destination.id}}" src="./img1.png" alt="{{destination.description}}" />
-      {% endfor %}
+        {% for destination in destinations %}
+            <twig:Card text="{{destination.name}}" href="/destination/{{ destination.id}}" src="{{destination.image_url}}" alt="{{destination.description}}" />
+        {% endfor %}
     </div>
-    <twig:HotelCard title="hotel blabla" description="hbjbgouogobodhofbdohbodh" image="/img1.png" rooms="14"/>
-    </body>
-</html>
+{% endblock %}

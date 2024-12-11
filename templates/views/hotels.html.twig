@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="destination-section">
+        <h1 class="title">Our Hotels</h1>
+        <p class="sub-title">Discover our collection of premium hotels</p>
+        
+        <div class="flex-container" style="gap: 2rem;">
+            {% for hotel in hotels %}
+                <twig:HotelCard 
+                    title="{{hotel.name}}"
+                    description="{{hotel.description}}"
+                    image="{{hotel.image_url}}"
+                    rooms="{{hotel.available_rooms}}"
+                    href="/hotel/{{hotel.id}}"
+                />
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %} 

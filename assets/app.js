@@ -15,3 +15,8 @@ import "./styles/input.css";
 import "./styles/signup.css";
 import "./styles/profile.css";
 import "./styles/favcard.css";
+import "./styles/navbar.css";
+import "./styles/footer.css";
+import "./styles/pages.css";
+import "./styles/admin.css";
+import "./styles/hotel.css";

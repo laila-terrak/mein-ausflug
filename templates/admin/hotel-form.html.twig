@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="admin-container">
+        <h1>{{ hotel is defined ? 'Edit' : 'Add' }} Hotel</h1>
+        
+        {% if app.request.query.get('error') %}
+            <div class="error-message">{{ app.request.query.get('error') }}</div>
+        {% endif %}
+        
+        <form method="POST" class="admin-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="{{ hotel.name|default('') }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Short Description</label>
+                <input type="text" id="description" name="description" value="{{ hotel.description|default('') }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="text">Full Description</label>
+                <textarea id="text" name="text" required>{{ hotel.text|default('') }}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="destination_id">Destination</label>
+                <select id="destination_id" name="destination_id" required>
+                    <option value="">Select a destination</option>
+                    {% for destination in destinations %}
+                        <option value="{{ destination.id }}" {{ hotel is defined and hotel.destination_id == destination.id ? 'selected' : '' }}>
+                            {{ destination.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="room_number">Total Rooms</label>
+                <input type="number" id="room_number" name="room_number" value="{{ hotel.room_number|default('') }}" required min="1">
+            </div>
+            
+            <div class="form-group">
+                <label for="available_rooms">Available Rooms</label>
+                <input type="number" id="available_rooms" name="available_rooms" value="{{ hotel.available_rooms|default('') }}" required min="0">
+            </div>
+            
+            <div id="image-container">
+                {% if hotel is defined and hotel.images %}
+                    {% for image in hotel.images|split(',') %}
+                        <div class="form-group image-group">
+                            <label>Image URL</label>
+                            <div class="image-input-group">
+                                <input type="url" name="image_urls[]" value="{{ image }}" class="image-input">
+                                <button type="button" class="btn-delete remove-image" onclick="removeImage(this)">Remove</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="form-group image-group">
+                        <label>Image URL</label>
+                        <div class="image-input-group">
+                            <input type="url" name="image_urls[]" class="image-input">
+                            <button type="button" class="btn-delete remove-image" onclick="removeImage(this)">Remove</button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <button type="button" class="btn-secondary" onclick="addImageField()">Add Another Image</button>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">{{ hotel is defined ? 'Update' : 'Create' }}</button>
+                <a href="{{ path('app_admin_hotels') }}" class="btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function addImageField() {
+            const container = document.getElementById('image-container');
+            const newGroup = document.createElement('div');
+            newGroup.className = 'form-group image-group';
+            newGroup.innerHTML = `
+                <label>Image URL</label>
+                <div class="image-input-group">
+                    <input type="url" name="image_urls[]" class="image-input">
+                    <button type="button" class="btn-delete remove-image" onclick="removeImage(this)">Remove</button>
+                </div>
+            `;
+            container.appendChild(newGroup);
+        }
+
+        function removeImage(button) {
+            const group = button.closest('.image-group');
+            if (document.querySelectorAll('.image-group').length > 1) {
+                group.remove();
+            } else {
+                group.querySelector('input').value = '';
+            }
+        }
+    </script>
+{% endblock %} 
