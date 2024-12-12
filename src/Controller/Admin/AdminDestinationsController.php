@@ -143,7 +143,18 @@ class AdminDestinationsController extends AdminBaseController {
           // Delete associated images first
           $connection->executeStatement('DELETE FROM images WHERE destination_id = ?', [$id]);
           
-          // Then delete the destination
+          // Get all hotels for this destination
+          $hotels = $connection->fetchAllAssociative('SELECT id FROM hotels WHERE destination_id = ?', [$id]);
+          
+          // Delete amenities for each hotel
+          foreach ($hotels as $hotel) {
+              $connection->executeStatement('DELETE FROM amenities WHERE hotel_id = ?', [$hotel['id']]);
+          }
+          
+          // Delete associated hotels (this will cascade delete hotel images)
+          $connection->executeStatement('DELETE FROM hotels WHERE destination_id = ?', [$id]);
+          
+          // Finally delete the destination
           $connection->executeStatement('DELETE FROM destinations WHERE id = ?', [$id]);
           
           $connection->commit();

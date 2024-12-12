@@ -35,17 +35,17 @@
                 </p>
             </div>
         </div>
-                <h3>Hotels</h3>
-                <div class="hotels-container">
-                    {% for hotel in hotels %}
-                        <twig:HotelCard 
-                            rooms="{{hotel.available_rooms}}"
-                            title="{{hotel.name}}" 
-                            href="/hotel/{{ hotel.id}}" 
-                            image="{{hotel.images[0]}}" 
-                            description="{{hotel.description}}" 
-                        />
-                    {% endfor %}
-                </div>
+        <h3>Hotels</h3>
+        <div class="hotels-container">
+            {% for hotel in hotels %}
+                <twig:HotelCard 
+                    rooms="{{hotel.available_rooms}}"
+                    title="{{hotel.name}}" 
+                    href="/hotel/{{ hotel.id}}" 
+                    image="{{hotel.images[0]}}" 
+                    description="{{hotel.description}}" 
+                />
+            {% endfor %}
+        </div>
     </section>
 {% endblock %}

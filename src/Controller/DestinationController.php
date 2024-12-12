@@ -44,7 +44,7 @@ class DestinationController extends AbstractController
                 i.destination_id AS destination_image_id
             FROM destinations d
             LEFT JOIN hotels h ON h.destination_id = d.id
-            LEFT JOIN images i ON i.destination_id = d.id OR i.hotel_id = h.id
+            LEFT JOIN images i ON (i.destination_id = d.id OR i.hotel_id = h.id)
             WHERE d.id = :destination_id
             ORDER BY h.id, i.id
         ';
@@ -81,18 +81,20 @@ class DestinationController extends AbstractController
                     ];
                 }
 
-                // Add images for this hotel
-                if ($row['image_url']) {
+                // Add images only if they belong to this hotel
+                if ($row['image_url'] && $row['hotel_image_id'] == $hotelId) {
                     $hotels[$hotelId]['images'][] = $row['image_url'];
                 }
             }
 
-            // Also add destination-level images
-            if ($row['destination_image_id'] && !$row['hotel_image_id']) {
+            // Add destination-level images
+            if ($row['image_url'] && $row['destination_image_id'] == $destination['id']) {
                 if (!isset($destination['images'])) {
                     $destination['images'] = [];
                 }
-                $destination['images'][] = $row['image_url'];
+                if (!in_array($row['image_url'], $destination['images'])) {
+                    $destination['images'][] = $row['image_url'];
+                }
             }
         }
 

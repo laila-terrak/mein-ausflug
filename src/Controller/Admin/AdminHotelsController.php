@@ -151,8 +151,16 @@ class AdminHotelsController extends AdminBaseController {
       
       try {
           $connection->beginTransaction();
+          
+          // Delete associated amenities first
+          $connection->executeStatement('DELETE FROM amenities WHERE hotel_id = ?', [$id]);
+          
+          // Delete associated images
           $connection->executeStatement('DELETE FROM images WHERE hotel_id = ?', [$id]);
+          
+          // Finally delete the hotel
           $connection->executeStatement('DELETE FROM hotels WHERE id = ?', [$id]);
+          
           $connection->commit();
           
           return $this->redirectToRoute('app_admin_hotels');
