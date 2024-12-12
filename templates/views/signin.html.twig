@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <form method="POST" action="{{ path('app_signin_post') }}" data-turbo="false">
+    <form class="form" method="POST" action="{{ path('app_signin_post') }}" data-turbo="false">
         <h1 class="sign-header">Sign In</h1>
         {% if app.request.query.get('error') %}
             <div class="error-message">{{ app.request.query.get('error') }}</div>
